@@ -2,29 +2,33 @@
 <html lang="pt">
     <head>
         <meta charset="utf-8">
-        <title>Posso perguntar?</title>
+        <title>Jogo das perguntas</title>
 
-        <meta name="description" content="Jogo de perguntas">
+        <meta name="description" content="Jogo de perguntas que dão de pensar">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Twitter -->
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="Perguntas" />
-        <meta name="twitter:description" content="Jogo de perguntas" />
+        <meta name="twitter:title" content="Jogo das perguntas" />
+        <meta name="twitter:description" content="Jogo de perguntas que dão de pensar" />
         <meta name="twitter:image" content="https://perguntas.joao.pt/icon.png" />
         <meta name="twitter:url" content="https://perguntas.joao.pt" />
 
         <!-- Facebook -->
-        <meta property="og:site_name" content="Perguntas" />
-        <meta property="og:title" content="Perguntas" />
+        <meta property="og:site_name" content="Jogo das perguntas" />
+        <meta property="og:title" content="Jogo das perguntas" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://perguntas.joao.pt" />
         <meta property="og:image" content="https://perguntas.joao.pt/icon.png" />
-        <meta property="og:description" content="Jogo de perguntas" />
+        <meta property="og:description" content="Jogo de perguntas que dão de pensar" />
 
         <link rel="manifest" href="manifest.webmanifest">
         <link rel="icon" href="https://perguntas.joao.pt/favicon.png">
         <link rel="apple-touch-icon" href="https://perguntas.joao.pt/icon.png" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
 
         <script async src="https://umami.joao.pt/script.js" data-website-id="75f760d3-9faa-447d-a84e-54b7d36b68c3"></script>
 
@@ -40,7 +44,11 @@
 
             body {
                 position: relative;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                font-family: 'IBM Plex Sans', sans-serif;
+                font-size: 15px;
+                font-size: clamp(100%, 1rem + 2vw, 15px);
+                font-weight: 400;
+                line-height: 1.2;
             }
 
             .nav-toggle {
@@ -60,8 +68,8 @@
 
             @media screen and (min-width: 512px) {
                 .nav-toggle {
-                top: 1rem;
-                bottom: auto;
+                    top: 1rem;
+                    bottom: auto;
                 }
             }
 
@@ -143,14 +151,22 @@
 
             @media screen and (min-width: 512px) {
                 .nav-container {
-                max-width: 490px;
-                top: 0;
-                bottom: auto;
+                    max-width: 490px;
+                    top: 0;
+                    bottom: auto;
                 }
             }
 
             .open .nav-container {
                 display: block;
+            }
+
+            .nav-container h1 {
+                font-size: 1.5rem;
+            }
+
+            .nav-container p {
+                margin: 1rem 0;
             }
 
             .nav-container ul {
@@ -179,6 +195,7 @@
 
             ul.questions li {
                 display: none;
+                font-weight: 600;
                 height: 100vh;
                 width: 100vw;
                 flex-flow: column wrap;
@@ -189,13 +206,23 @@
                 padding-right: 10vw;
             }
 
-            ul.questions li.on {
+                ul.questions li:after {
+                    content: 'Pergunta #' attr(question);
+                    font-family: monospace, sans-serif;
+                    font-size: .75rem;
+                    font-weight: initial;
+                    margin-top: 2rem;
+                }
+
+            ul.questions li.visible {
                 display: flex;
             }
 
             .all ul.questions li {
                 display: flex;
-                height: 50vh;
+                height: auto;
+                padding-top: 10vw;
+                padding-bottom: 10vw;
                 border-bottom: 1px solid #ccc;
             }
         </style>
@@ -207,8 +234,8 @@
         </a>
     
         <div class="nav-container">
-            <h1>Perguntas</h1>
-            <h2>Para jogar, ler a pergunta em voz alta. Tocar no ecrã para passar para a próxima.</h2>
+            <h1>Jogo das perguntas</h1>
+            <p>Um jogo de perguntas que dão de pensar. Para jogar, basta ler a pergunta em voz alta e depois tocar no ecrã para passar para a próxima.</p>
             <ul>
                 <li>
                     <a href="#" tabindex="1" class="view umami--click--view">Ver </a>
@@ -220,7 +247,7 @@
         </div>
         
         <ul class="questions">
-            <li question="1" class="on">Que idade gostavas de ter?</li>
+            <li question="1" class="visible">Que idade gostavas de ter?</li>
             <li question="2">Com que pessoa próxima nunca irias de férias?</li>
             <li question="3">Onde te esconderias se o mundo acabasse?</li>
             <li question="4">Que mais me queres dizer?</li>
@@ -242,7 +269,7 @@
             <li question="20">O que queres perdoar a ti mesmo?</li>
             <li question="21">Que conselho darias a ti mesmo com 11 anos?</li>
             <li question="22">Que conselho darias a ti mesmo daqui a 11 anos?</li>
-            <li question="23">Enquanto envelheves, preferes ir ficando mais bonito ou mais inteligente?</li>
+            <li question="23">Enquanto envelheces, preferes ir ficando mais bonito ou mais inteligente?</li>
             <li question="24">Que regras queres quebrar?</li>
             <li question="25">Como seria o teu dia-a-dia se não trabalhasses?</li>
             <li question="26">O que gostarias de perder no futuro?</li>
@@ -270,29 +297,6 @@
             const list = document.querySelector('ul.questions');
             const items = document.querySelector('li[question]');
 
-            list.addEventListener('click', function(e) {
-
-                // Picks visible item
-                const visibleItem = document.querySelector('li.on');
-                console.log('Clicked on visible item', visibleItem);
-                
-                // Hids visible item
-                visibleItem.classList.toggle('on');
-
-                // Picks random number
-                const randomNumber = Math.random() * list.children.length | 1;
-                console.log('Picked random number', randomNumber);
-                
-                // Shows new item with random number
-                const newItem = document.querySelector('li[question="' + randomNumber + '"]');
-                newItem.classList.toggle('on');
-                console.log('Now showing randomly', newItem);
-
-                console.log('_____')
-
-                e.preventDefault();
-            });
-
             // Toggles nav
             const toggle = document.querySelector('.nav-toggle');
             const nav = document.querySelector('.nav-container');
@@ -307,6 +311,29 @@
                 document.body.classList.toggle('all');
                 e.preventDefault();
             });
+
+            // Draw question
+            var drawQuestion = function() {
+                // Hides visible item
+                const visibleQuestion = document.querySelector('li.visible');
+                visibleQuestion.classList.toggle('visible');
+                
+                // Shows new item with random number
+                const randomNumber = Math.random() * list.children.length | 1;
+                const newQuestion = document.querySelector('li[question="' + randomNumber + '"]');
+                newQuestion.classList.toggle('visible');
+            }
+
+            // Draw question on page load
+            window.onload = function() {
+                drawQuestion();
+            };
+
+            // Draw question on page tap/click
+            list.addEventListener('click', function(e) {
+                drawQuestion();
+            });
+
         </script>
     </body>
 </html>
