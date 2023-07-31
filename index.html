@@ -364,7 +364,7 @@
 
             // Label questions with numbers
             for (let i = 0; i < list.children.length; i++) {
-                list.children[i].setAttribute('question', i);
+                list.children[i].setAttribute('question', i+1);
             }
 
             // Toggles nav
@@ -389,7 +389,8 @@
                 visibleQuestion.classList.toggle('visible');
                 
                 // Shows new item with random number
-                const randomNumber = Math.random() * list.children.length | 1;
+                // const randomNumber = Math.random() * list.children.length | 1;
+                const randomNumber = Math.floor(Math.random() * (list.children.length) + 1);
                 const newQuestion = document.querySelector('li[question="' + randomNumber + '"]');
                 newQuestion.classList.toggle('visible');
             }
